@@ -1,4 +1,4 @@
-name: TestScan
+name: ECRPush
 
 on:
   workflow_dispatch
