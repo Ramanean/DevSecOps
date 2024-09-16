@@ -31,14 +31,14 @@ jobs:
 
           
 
-      - name: ECR Push
+      - name: ECR Login
         run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 211125664518.dkr.ecr.us-east-1.amazonaws.com
 
       - name: ECR Tag
         run: docker tag shanecr:latest 211125664518.dkr.ecr.us-east-1.amazonaws.com/shanecr:latest
 
       - name: Run Qualys scan
-        run: chmod +x ./validate_image.sh ${QUALYS_API_SERVER} ${QUALYS_USERNAME} ${QUALYS_PASSWORD} shanecr
+        run: chmod +x ./validate_image.sh ${QUALYS_API_SERVER} ${QUALYS_USERNAME} ${QUALYS_PASSWORD}
 
       - name: ECR Push
         run: docker push 211125664518.dkr.ecr.us-east-1.amazonaws.com/shanecr:latest
