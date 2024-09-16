@@ -37,16 +37,17 @@ jobs:
       - name: ECR Tag
         run: docker tag shanecr:latest 211125664518.dkr.ecr.us-east-1.amazonaws.com/shanecr:latest
 
+      - name: ECR Push
+        run: docker push 211125664518.dkr.ecr.us-east-1.amazonaws.com/shanecr:latest
+ 
       - name: Get Image ID
         uses: sapvs/docker-image-id@v1.0.0
         with:
-          image_name: shanecr:latest
+          image_name: 211125664518.dkr.ecr.us-east-1.amazonaws.com/shanecr:latest
           
       - name: Run Qualys scan
         run: chmod +x ./validate_image.sh ${QUALYS_API_SERVER} ${QUALYS_USERNAME} ${QUALYS_PASSWORD}
 
-      - name: ECR Push
-        run: docker push 211125664518.dkr.ecr.us-east-1.amazonaws.com/shanecr:latest
- 
+
   
 
