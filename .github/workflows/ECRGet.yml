@@ -36,7 +36,7 @@ jobs:
         run: docker images
          
       - name: Run Qualys scan
-        run: bash validate_image.sh ${QUALYS_API_SERVER} ${QUALYS_USERNAME} ${QUALYS_PASSWORD} 211125664518.dkr.ecr.us-east-1.amazonaws.com/shanecr
+        run: bash validate_image.sh ${QUALYS_API_SERVER} ${QUALYS_USERNAME} ${QUALYS_PASSWORD} alpine:3.17 
 
 
   
