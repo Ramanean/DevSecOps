@@ -46,7 +46,7 @@ jobs:
           image_name: 211125664518.dkr.ecr.us-east-1.amazonaws.com/shanecr:latest
           
       - name: Run Qualys scan
-        run: chmod +x ./validate_image.sh ${QUALYS_API_SERVER} ${QUALYS_USERNAME} ${QUALYS_PASSWORD}
+        run: chmod +x ./validate_image.sh ${QUALYS_API_SERVER} ${QUALYS_USERNAME} ${QUALYS_PASSWORD} aa976b95f68b5e413c15dd318500e9d29be4b1bd43df0d6b90c46f2109c67dc5
 
 
   
