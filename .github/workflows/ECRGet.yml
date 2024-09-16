@@ -34,7 +34,7 @@ jobs:
  
          
       - name: Run Qualys scan
-        run: chmod +x ./validate_image.sh ${QUALYS_API_SERVER} ${QUALYS_USERNAME} ${QUALYS_PASSWORD} 211125664518.dkr.ecr.us-east-1.amazonaws.com/shanecr@sha256:7f58f5a7146849708aaab46fb597a86ee9438aef9d5aa43b63d620570ff262dc
+        run: chmod +x ./validate_image.sh ${QUALYS_API_SERVER} ${QUALYS_USERNAME} ${QUALYS_PASSWORD} 7f58f5a7146849708aaab46fb597a86ee9438aef9d5aa43b63d620570ff262dc
 
 
   
