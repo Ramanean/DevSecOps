@@ -37,6 +37,19 @@ jobs:
       - name: ECR Tag
         run: docker tag shanecr:latest 211125664518.dkr.ecr.us-east-1.amazonaws.com/shanecr:latest
 
+        #name: Find ImageID
+        #run:
+        #  def IMAGE_ID = sh(script: "docker images | grep -E '^prabhasgupte/webmon.*latest' | head -1 | awk '{print \$3}'", returnStdout: true).trim()
+				#	echo "Image Id extracted: ${IMAGE_ID}"
+				#	env.DOCKER_IMAGE_ID = IMAGE_ID
+
+      - name: Get Image ID
+        uses: sapvs/docker-image-id@v1.0.0
+        with:
+        # Image name e.g. alpine:latest
+          image_name: shanecr:latest
+          
+
       - name: Run Qualys scan
         run: chmod +x ./validate_image.sh ${QUALYS_API_SERVER} ${QUALYS_USERNAME} ${QUALYS_PASSWORD}
 
