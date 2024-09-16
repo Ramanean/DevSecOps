@@ -36,7 +36,7 @@ jobs:
         run: docker images
          
       - name: Run Qualys scan
-        run: bash validate_image.sh ${QUALYS_API_SERVER} ${QUALYS_USERNAME} ${QUALYS_PASSWORD} alpine:3.17 300
+        run: bash validate_image.sh ${{ secrets.QUALYS_API_SERVER }} ${{ secrets.QUALYS_USERNAME }} $${{ secrets.QUALYS_PASSWORD }} alpine:3.17
 
 
   
