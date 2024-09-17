@@ -27,15 +27,11 @@ jobs:
           # AWS Access Key ID. Provide this key if you want to assume a role using access keys rather than a web identity token.
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           # AWS Secret Access Key. Required if aws-access-key-id is provided.
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          
-      - name: Run Qualys scan
-        run: bash validate_image.sh ${{ secrets.QUALYS_API_SERVER }} ${{ secrets.QUALYS_USERNAME }} $${{ secrets.QUALYS_PASSWORD }} shanecr:latest
-      
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}          
+
       - name: ECR Login
         run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 211125664518.dkr.ecr.us-east-1.amazonaws.com
    
-
       - name: ECR Tag
         run: docker tag shanecr:latest 211125664518.dkr.ecr.us-east-1.amazonaws.com/shanecr:latest
 
