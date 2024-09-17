@@ -41,7 +41,8 @@ jobs:
         run: docker push 211125664518.dkr.ecr.us-east-1.amazonaws.com/shanecr:latest
    
       - name: Run Qualys scan
-        run: chmod +x ./validate_image.sh ${QUALYS_API_SERVER} ${QUALYS_USERNAME} ${QUALYS_PASSWORD} 
+        run: bash validate_image.sh ${{ secrets.QUALYS_API_SERVER }} ${{ secrets.QUALYS_USERNAME }} $${{ secrets.QUALYS_PASSWORD }} shanecr:latest
+ 
 
 
   
