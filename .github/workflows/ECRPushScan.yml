@@ -1,4 +1,4 @@
-name: ECRPush
+name: ECRPushScan
 
 on:
   workflow_dispatch
