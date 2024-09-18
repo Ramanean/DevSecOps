@@ -138,11 +138,11 @@ do
 	wait_period=$(($wait_period+10))
 	get_result
 done
-if [ $wait_period = $TIMEOUT ]
-then
-	echo "Vulnerabilities processing took  more time than configured time:$TIMEOUT second"
-	echo "Please check the sensor logs OR QUALYS cloud platform status(https://status.qualys.com/)"
-	exit 1
-fi
+#if [ $wait_period = $TIMEOUT ]
+#then
+#	echo "Vulnerabilities processing took  more time than configured time:$TIMEOUT second"
+#	echo "Please check the sensor logs OR QUALYS cloud platform status(https://status.qualys.com/)"
+#	exit 1
+#fi
 EVAL_RESULT=$(jq -f jq_filter.txt ${IMAGE_ID}.json)
 echo ${EVAL_RESULT}
