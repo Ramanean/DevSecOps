@@ -131,7 +131,7 @@ echo "Qualys Sensor will untag it after scanning. In case this is the only tag p
 echo -e "\n=-=-Configured TIME_OUT in second :$TIMEOUT-=-=-\n"
 get_result
 wait_period=0
-while [ "${HTTP_CODE}" -ne "200" -o "${VULNS_AVAILABLE}" != true ] && [[ $wait_period -lt $TIMEOUT ]]
+while [ "${HTTP_CODE}" -ne "200" -o "${VULNS_AVAILABLE}" != true ]
 do
 	echo "Retrying after 10 seconds..."
 	sleep 10s
