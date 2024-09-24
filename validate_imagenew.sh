@@ -47,8 +47,8 @@ check_command_exists () {
 get_token() {
         #echo "Generate Gateway Token for API Version:v1.3"  
 	#TOKEN=$($CURL -k -X POST ''${QUALYS_API_SERVER}'/auth' -d 'username='${USERNAME}'&password='${PASSWORD}'&token=true&permissions=true' -s)
-	#echo $TOKEN
- 	TOKEN=${PASSWORD}
+	TOKEN=${PASSWORD}
+  	echo $TOKEN
 }
 
 get_result () {
