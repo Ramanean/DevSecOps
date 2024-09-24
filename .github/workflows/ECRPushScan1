@@ -1,0 +1,45 @@
+name: ECRPushScan
+
+on:
+  workflow_dispatch
+
+jobs:
+  job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.7
+
+      - name: Install Qualys
+        run: sudo docker run -d --restart on-failure -v /var/run/docker.sock:/var/run/docker.sock:ro -v /etc/qualys:/usr/local/qualys/qpa/data/conf/agent-data -v /usr/local/qualys/sensor/data:/usr/local/qualys/qpa/data -e ACTIVATIONID=ce990c19-eedb-4fbf-a93e-8437b4ac4545 -e CUSTOMERID=2bb876d1-105e-daa8-82c7-192aa63032e6 -e POD_URL=https://cmsqagpublic.qg1.apps.qualys.in/ContainerSensor --net=host --name qualys-container-sensor qualys/qcs-sensor:latest --cicd-deployed-sensor
+
+      - name: docker build
+        run: docker build -t shanecr .
+
+      - name: Configure AWS Credentials
+        # You may pin to the exact commit or the version.
+        # uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          # AWS Region, e.g. us-east-2
+          aws-region:  us-east-2
+          # AWS Access Key ID. Provide this key if you want to assume a role using access keys rather than a web identity token.
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          # AWS Secret Access Key. Required if aws-access-key-id is provided.
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+
+      - name: Run Qualys scan
+        run: bash validate_image.sh ${{ secrets.QUALYS_API_SERVER }} shanecr:latest 600
+
+      - name: ECR Login
+        run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 211125664518.dkr.ecr.us-east-1.amazonaws.com
+   
+      - name: ECR Tag
+        run: docker tag shanecr:latest 211125664518.dkr.ecr.us-east-1.amazonaws.com/shanecr:latest
+
+
+  
+          
+
+      
