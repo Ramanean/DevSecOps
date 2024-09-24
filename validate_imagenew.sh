@@ -35,10 +35,9 @@ fi
 
 
 QUALYS_API_SERVER=$1
-USERNAME=$2
-PASSWORD=$3
-IMAGE=$4
-TIMEOUT=$5
+PASSWORD=$2
+IMAGE=$3
+TIMEOUT=$4
 
 
 check_command_exists () {
